@@ -1,0 +1,24 @@
+[package]
+name = "python-sandbox"
+version = "0.1.0"
+edition = "2021"
+description = "Secure Python execution in WebAssembly isolation"
+license = "MIT"
+
+[lib]
+name = "python_sandbox"
+path = "src/lib.rs"
+
+[[example]]
+name = "basic_execution"
+path = "examples/basic_execution.rs"
+
+[dependencies]
+wasmtime = "27"
+wasmtime-wasi = "27"
+tokio = { version = "1", features = ["rt-multi-thread", "time", "sync", "macros"] }
+anyhow = "1.0"
+thiserror = "1.0"
+
+[dev-dependencies]
+tokio-test = "0.4"
