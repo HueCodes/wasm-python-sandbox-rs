@@ -39,7 +39,7 @@ impl SandboxLimiter {
 impl ResourceLimiter for SandboxLimiter {
     fn memory_growing(
         &mut self,
-        current: usize,
+        _current: usize,
         desired: usize,
         _maximum: Option<usize>,
     ) -> anyhow::Result<bool> {
