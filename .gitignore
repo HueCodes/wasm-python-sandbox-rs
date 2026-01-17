@@ -1,0 +1,19 @@
+# Build artifacts
+target/
+
+# macOS
+.DS_Store
+
+# Assets (wasm binaries)
+assets/
+
+# Documentation and notes
+*.md
+NOTES.txt
+
+# Tests and examples
+tests/
+examples/
+
+# Cargo lock (library)
+Cargo.lock
