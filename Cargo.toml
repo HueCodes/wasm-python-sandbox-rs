@@ -1,17 +1,13 @@
 [package]
-name = "python-sandbox"
+name = "wasm-python-sandbox-rs"
 version = "0.1.0"
 edition = "2021"
 description = "Secure Python execution in WebAssembly isolation"
 license = "MIT"
 
 [lib]
-name = "python_sandbox"
+name = "wasm_python_sandbox_rs"
 path = "src/lib.rs"
-
-[[example]]
-name = "basic_execution"
-path = "examples/basic_execution.rs"
 
 [dependencies]
 wasmtime = "27"

@@ -15,7 +15,7 @@
 //! ## Example
 //!
 //! ```rust,ignore
-//! use python_sandbox::prelude::*;
+//! use wasm_python_sandbox_rs::prelude::*;
 //! use std::time::Duration;
 //!
 //! #[tokio::main]
