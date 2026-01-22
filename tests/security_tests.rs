@@ -53,18 +53,14 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "filesystem access should be blocked"
-            );
-            assert!(res.stdout.contains("BLOCKED"), "should raise an exception");
-        }
-        Err(_) => {
-            // Execution error is also acceptable
-        }
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "filesystem access should be blocked"
+        );
+        assert!(res.stdout.contains("BLOCKED"), "should raise an exception");
     }
+    // Execution error is also acceptable
 }
 
 /// Test that os module dangerous operations are restricted.
@@ -87,17 +83,13 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "os.system should be blocked"
-            );
-        }
-        Err(_) => {
-            // Execution error is acceptable
-        }
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "os.system should be blocked"
+        );
     }
+    // Execution error is acceptable
 }
 
 /// Test that subprocess module is restricted.
@@ -120,14 +112,11 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "subprocess should be blocked"
-            );
-        }
-        Err(_) => {}
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "subprocess should be blocked"
+        );
     }
 }
 
@@ -152,14 +141,11 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "network access should be blocked"
-            );
-        }
-        Err(_) => {}
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "network access should be blocked"
+        );
     }
 }
 
@@ -226,14 +212,11 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "ctypes should be blocked"
-            );
-        }
-        Err(_) => {}
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "ctypes should be blocked"
+        );
     }
 }
 
@@ -254,14 +237,11 @@ print('SECURITY_BREACH: eval/exec bypass')
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "eval/exec should remain sandboxed"
-            );
-        }
-        Err(_) => {}
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "eval/exec should remain sandboxed"
+        );
     }
 }
 
@@ -284,14 +264,11 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "__builtins__ manipulation should be sandboxed"
-            );
-        }
-        Err(_) => {}
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "__builtins__ manipulation should be sandboxed"
+        );
     }
 }
 
@@ -319,13 +296,10 @@ except Exception as e:
         )
         .await;
 
-    match result {
-        Ok(res) => {
-            assert!(
-                !res.stdout.contains("SECURITY_BREACH"),
-                "pickle attacks should be blocked"
-            );
-        }
-        Err(_) => {}
+    if let Ok(res) = result {
+        assert!(
+            !res.stdout.contains("SECURITY_BREACH"),
+            "pickle attacks should be blocked"
+        );
     }
 }

@@ -206,7 +206,7 @@ impl SharedEngine {
         })
     }
 
-    /// Create a shared engine wrapper from an existing Arc<Engine>.
+    /// Create a shared engine wrapper from an existing `Arc<Engine>`.
     pub fn from_arc(engine: Arc<Engine>) -> Self {
         Self { engine }
     }
@@ -216,7 +216,7 @@ impl SharedEngine {
         &self.engine
     }
 
-    /// Get the Arc<Engine> for sharing.
+    /// Get the `Arc<Engine>` for sharing.
     pub fn arc(&self) -> Arc<Engine> {
         Arc::clone(&self.engine)
     }

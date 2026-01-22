@@ -47,19 +47,17 @@ async fn main() -> Result<()> {
             println!("stderr:\n{}", result.stderr);
 
             // Parse the Python exception
-            if let Some(exc) = parse_python_exception(&result.stderr) {
-                if let SandboxError::PythonException {
-                    exception_type,
-                    message,
-                    traceback,
-                } = exc
-                {
-                    println!("\nParsed exception:");
-                    println!("  Type: {}", exception_type);
-                    println!("  Message: {}", message);
-                    if let Some(tb) = traceback {
-                        println!("  Has traceback: {} lines", tb.lines().count());
-                    }
+            if let Some(SandboxError::PythonException {
+                exception_type,
+                message,
+                traceback,
+            }) = parse_python_exception(&result.stderr)
+            {
+                println!("\nParsed exception:");
+                println!("  Type: {}", exception_type);
+                println!("  Message: {}", message);
+                if let Some(tb) = traceback {
+                    println!("  Has traceback: {} lines", tb.lines().count());
                 }
             }
         }
@@ -179,10 +177,10 @@ for i, r in enumerate(results):
                 Ok(result) if result.is_success() => "Success".to_string(),
                 Ok(result) => {
                     // Parse the Python error
-                    if let Some(exc) = parse_python_exception(&result.stderr) {
-                        if let SandboxError::PythonException { exception_type, .. } = exc {
-                            return format!("Python {}", exception_type);
-                        }
+                    if let Some(SandboxError::PythonException { exception_type, .. }) =
+                        parse_python_exception(&result.stderr)
+                    {
+                        return format!("Python {}", exception_type);
                     }
                     format!("Python error (exit code {})", result.exit_code)
                 }

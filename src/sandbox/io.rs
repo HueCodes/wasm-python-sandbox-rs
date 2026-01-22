@@ -84,8 +84,8 @@ impl ProvidedInput {
         Self::new(Vec::new())
     }
 
-    /// Create from a string.
-    pub fn from_str(s: &str) -> Self {
+    /// Create from a string slice.
+    pub fn from_string(s: &str) -> Self {
         Self::new(s.as_bytes().to_vec())
     }
 }
@@ -118,7 +118,7 @@ impl SandboxIo {
     /// Create a new I/O configuration with optional input.
     pub fn new(input: Option<&str>) -> Self {
         Self {
-            stdin: input.map(ProvidedInput::from_str).unwrap_or_default(),
+            stdin: input.map(ProvidedInput::from_string).unwrap_or_default(),
             stdout: CapturedOutput::new(),
             stderr: CapturedOutput::new(),
         }
@@ -155,7 +155,7 @@ mod tests {
 
     #[test]
     fn test_provided_input() {
-        let mut input = ProvidedInput::from_str("test input");
+        let mut input = ProvidedInput::from_string("test input");
         let mut buf = [0u8; 4];
         let n = input.read(&mut buf).unwrap();
         assert_eq!(n, 4);

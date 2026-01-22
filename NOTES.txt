@@ -1,0 +1,11 @@
+# Python Sandbox - Personal Notes
+
+## Status
+Project complete, waiting for rustpython.wasm when needed.
+
+## Next Steps
+- Download rustpython.wasm to assets/ when ready to use
+- Run: cargo run --example basic_execution
+
+## Notes
+
