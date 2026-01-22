@@ -2,6 +2,7 @@
 
 pub use crate::error::{Result, SandboxError};
 pub use crate::sandbox::{
-    config::SandboxConfig,
-    executor::{ExecutionResult, PythonSandbox},
+    cache::{global_cache, ModuleCache, SharedEngine},
+    config::{SandboxConfig, SandboxConfigBuilder},
+    executor::{ExecutionMetadata, ExecutionResult, PythonSandbox, SandboxOptions},
 };

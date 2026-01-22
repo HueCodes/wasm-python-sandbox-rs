@@ -50,5 +50,6 @@ pub mod sandbox;
 
 // Re-export main types at crate root for convenience
 pub use error::{Result, SandboxError};
+pub use sandbox::cache::{global_cache, ModuleCache, SharedEngine};
 pub use sandbox::config::{SandboxConfig, SandboxConfigBuilder};
-pub use sandbox::executor::{ExecutionResult, PythonSandbox};
+pub use sandbox::executor::{ExecutionMetadata, ExecutionResult, PythonSandbox, SandboxOptions};
