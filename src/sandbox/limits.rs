@@ -8,6 +8,8 @@ pub struct SandboxLimiter {
     max_memory: u64,
     /// Current memory allocation.
     current_memory: u64,
+    /// Peak memory allocation (highest ever seen).
+    peak_memory: u64,
     /// Maximum table elements.
     max_table_elements: u64,
     /// Whether the limit has been exceeded.
@@ -20,6 +22,7 @@ impl SandboxLimiter {
         Self {
             max_memory,
             current_memory: 0,
+            peak_memory: 0,
             max_table_elements: 10_000, // Reasonable default
             limit_exceeded: false,
         }
@@ -33,6 +36,16 @@ impl SandboxLimiter {
     /// Get the current memory usage.
     pub fn current_memory(&self) -> u64 {
         self.current_memory
+    }
+
+    /// Get the peak memory usage (highest ever observed).
+    pub fn peak_memory(&self) -> u64 {
+        self.peak_memory
+    }
+
+    /// Get the configured maximum memory.
+    pub fn max_memory(&self) -> u64 {
+        self.max_memory
     }
 }
 
@@ -51,6 +64,10 @@ impl ResourceLimiter for SandboxLimiter {
         }
 
         self.current_memory = desired_bytes;
+        // Track peak memory
+        if desired_bytes > self.peak_memory {
+            self.peak_memory = desired_bytes;
+        }
         Ok(true)
     }
 
