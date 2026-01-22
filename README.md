@@ -1,5 +1,7 @@
 # wasm-python-sandbox-rs
 
+[![CI](https://github.com/HueCodes/wasm-python-sandbox-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/HueCodes/wasm-python-sandbox-rs/actions/workflows/ci.yml)
+
 Secure Python execution in WebAssembly using RustPython and Wasmtime.
 
 ## Features
