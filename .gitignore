@@ -4,16 +4,17 @@ target/
 # macOS
 .DS_Store
 
-# Assets (wasm binaries)
-assets/
+# Assets (wasm binaries - must be obtained separately)
+assets/*.wasm
 
-# Documentation and notes
-*.md
-NOTES.txt
+# Development notes (local reference only)
+DEVELOPMENT_NOTES.md
 
-# Tests and examples
-tests/
-examples/
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# Cargo lock (library)
-Cargo.lock
+# Benchmark results
+target/criterion/
