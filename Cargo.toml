@@ -4,10 +4,17 @@ version = "0.1.0"
 edition = "2021"
 description = "Secure Python execution in WebAssembly isolation"
 license = "MIT"
+repository = "https://github.com/your-username/wasm-python-sandbox-rs"
+keywords = ["wasm", "python", "sandbox", "security", "wasmtime"]
+categories = ["development-tools", "wasm"]
 
 [lib]
 name = "wasm_python_sandbox_rs"
 path = "src/lib.rs"
+
+[features]
+default = []
+tracing = ["dep:tracing"]
 
 [dependencies]
 wasmtime = "27"
@@ -15,6 +22,12 @@ wasmtime-wasi = "27"
 tokio = { version = "1", features = ["rt-multi-thread", "time", "sync", "macros"] }
 anyhow = "1.0"
 thiserror = "1.0"
+tracing = { version = "0.1", optional = true }
 
 [dev-dependencies]
 tokio-test = "0.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "sandbox_benchmarks"
+harness = false
