@@ -1,0 +1,10 @@
+Download rustpython.wasm to this folder before running the sandbox.
+
+Option 1 - Build from source:
+  git clone https://github.com/RustPython/RustPython /tmp/rustpython
+  cd /tmp/rustpython
+  cargo build --release --target wasm32-wasip1 --features freeze-stdlib
+  cp target/wasm32-wasip1/release/rustpython.wasm ./
+
+Option 2 - Check for pre-built releases:
+  https://github.com/RustPython/RustPython/releases
